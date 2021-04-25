@@ -1,3 +1,4 @@
+import { history } from "../helpers/history";
 import authService from "../services/auth.service";
 import {
     REGISTER_SUCCESS,
@@ -56,17 +57,18 @@ import {
           type: LOGIN_SUCCESS,
           // payload: { user: data },
         });
-  
+        history.push("/profile");
+        window.location.reload();
         return Promise.resolve();
       },
       (error) => {
         const message =
           (error.response &&
             error.response.data &&
-            error.response.data.message) ||
+            error.response.data.error) ||
           error.message ||
           error.toString();
-  
+            console.log(message);
         dispatch({
           type: LOGIN_FAIL,
         });

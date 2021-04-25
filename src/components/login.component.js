@@ -7,6 +7,7 @@ import CheckButton from "react-validation/build/button";
 
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import { getPostsCreater } from "../actions/postActions";
 
 const required = (value) => {
   if (!value) {
@@ -56,17 +57,20 @@ class Login extends Component {
     const { dispatch, history } = this.props;
 
     if (this.checkBtn.context._errors.length === 0) {
-      dispatch(login(this.state.username, this.state.password))
-        .then(() => {
-          history.push("/profile");
-          window.location.reload();
-        })
-        .catch(() => {
-          this.setState({
-            loading: false
-          });
-        });
-    } else {
+    //   dispatch(login(this.state.username, this.state.password))
+    this.props.login(this.state.username, this.state.password)
+        // .then(() => {
+          // history.push("/profile");
+          // window.location.reload();
+        // })
+    //     .catch(() => {
+    //       this.setState({
+    //         loading: false
+    //       });
+    //     });
+    // this.props.getPosts();
+    } 
+    else {
       this.setState({
         loading: false,
       });
@@ -77,7 +81,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/profile" />;
+      // return <Redirect to="/profile" />;
     }
 
     return (
@@ -160,4 +164,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (username, password) => {
+      dispatch(login(username, password))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

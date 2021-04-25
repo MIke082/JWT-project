@@ -6,7 +6,6 @@ import "./App.css";
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
-import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
@@ -63,11 +62,6 @@ class App extends Component {
               bezKoder
             </Link>
             <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/home"} className="nav-link">
-                  Home
-                </Link>
-              </li>
 
               {/* {showModeratorBoard && (
                 <li className="nav-item">
@@ -94,7 +88,7 @@ class App extends Component {
               {/* )} */}
             </div>
 
-            {isLoggedIn ? (
+            {this.props.isLoggedIn ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
@@ -144,8 +138,7 @@ class App extends Component {
           <div className="container mt-3">
             {/* {isLoggedIn} */}
             <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
               <Route path="/user" component={BoardUser} />

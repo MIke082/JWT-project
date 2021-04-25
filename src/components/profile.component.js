@@ -25,15 +25,15 @@ class Profile extends Component {
         </header>
 
         <div> 
-          <Link to={"/addPost"} className="btn btn-secondary" style={{ width: 200 }}>AddPost</Link>
+          <Link to={"/addPost"} className="btn btn-secondary">AddPost</Link>
         </div>
         <div>
-          <div style={{ textAlign: "center", }}>
+          <div >
             {!this.props.posts.length && (
-              <span style={{ width: 100, height: 100 }} className="spinner-border spinner-border-sm"></span>
+              <span  className="spinner-border spinner-border-sm"></span>
             )}
           </div>
-          <div className="main-div-" style={{ display: 'flex', flexDirection: 'row', width: 1200, flexWrap: "wrap" }}>
+          <div className="d-flex d-inline-flex flex-wrap " >
             {this.props.posts && this.props.posts.map((item, index) => <Post item={item} key={index} />)}
           </div>
         </div>
